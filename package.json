@@ -21,6 +21,7 @@
     "express-winston": "^4.0.5",
     "helmet": "^4.4.1",
     "mongoose": "^5.11.14",
+    "mongoose-data-seed": "^2.1.6",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -36,5 +37,8 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/runtime": "^7.12.5",
     "nodemon": "^2.0.7"
+  },
+  "mdSeed": {
+    "seedersFolder": "./seeders"
   }
 }
