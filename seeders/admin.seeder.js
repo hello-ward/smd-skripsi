@@ -4,7 +4,7 @@ import UserModel from '../src/models/user.model';
 const data = [{
   username: 'superadmin',
   password: 'superadmin',
-  level: 'superadmin',
+  roles: 'superadmin',
   phone: '081515292117',
   status: 2,
   created_at: Date.now()
