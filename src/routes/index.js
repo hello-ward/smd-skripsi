@@ -1,11 +1,17 @@
 import { Router } from 'express';
 
 import AuthRoutes from './auth';
-// import { userJwt } from '../config/passport';
+import AdminRoutes from './admin';
+import DriverRoutes from './driver';
+import MarketingRoutes from './marketing';
+import { adminJwt, driverJwt, marketingJwt } from '../config/passport';
 
 const routes = new Router();
 
 routes.use('/auth', AuthRoutes);
+routes.use('/admin', adminJwt, AdminRoutes);
+routes.use('/driver', driverJwt, DriverRoutes);
+routes.use('/marketing', marketingJwt, MarketingRoutes);
 
 routes.get('/', (req, res, next) => {
     return res.json('Services is running!');
