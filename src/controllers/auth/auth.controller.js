@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export default {
 
-    userLogin: async (req, res, next) => {
+    userLogin: async (req, res) => {
         try {
             const user = await UserModel.findOne({ username: req.body.username }).select("-__v");
             if (user == null) {
@@ -17,7 +17,7 @@ export default {
             const checkPassword = await bcrypt.compareSync(req.body.password, user.password);
             if (checkPassword) {
                 // sign token
-                let token = jwt.sign({ user_id: user._id }, constants.JWT_SECRET, { algorithm: 'HS256', expiresIn: '365d' });
+                let token = jwt.sign({ user_id: user._id, roles: user.roles }, constants.JWT_SECRET, { algorithm: 'HS256', expiresIn: '365d' });
                 if (req.body.fcm) {
                     await user.update({ fcm: req.body.fcm })
                 }
@@ -26,7 +26,7 @@ export default {
                     message: "login successfully",
                     data: {
                         access_token: token,
-                        level: user.level,
+                        roles: user.roles,
                         fcm: req.body.fcm
                     }
                 });

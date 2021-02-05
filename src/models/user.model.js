@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 const saltRounds = 10;
 const UserSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     username: {
         type: String
     },
@@ -14,12 +17,27 @@ const UserSchema = new mongoose.Schema({
     phone: {
         type: String
     },
-    level: {
+    address: {
+        type: String
+    },
+    roles: {
         type: String,
-        default: 'employee'
+        default: 'driver'
     },
     fcm: {
         type: String
+    },
+    gps: {
+        type: Boolean,
+        default: false
+    },
+    location: {
+        lat: {
+            type: String
+        },
+        long: {
+            type: String
+        }
     },
     created_at: {
         type: Date
@@ -34,5 +52,11 @@ UserSchema.pre('save', function (next) {
     this.password = bcrypt.hashSync(this.password, saltRounds);
     next();
 });
+
+UserSchema.methods.toJSON = function () {
+    var obj = this.toObject()
+    delete obj.password
+    return obj
+}
 
 export default mongoose.model("user", UserSchema, 'user');
