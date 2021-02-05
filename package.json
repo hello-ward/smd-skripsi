@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "helmet": "^4.4.1",
+    "modesl": "^1.2.1",
     "mongoose": "^5.11.14",
     "mongoose-data-seed": "^2.1.6",
     "morgan": "^1.10.0",
