@@ -12,7 +12,7 @@ const jwtAdminOpts = {
 passport.use('admin',
     new JWTStrategy(jwtAdminOpts, async (payload, done) => {
         try {
-            const user = await UserModel.findOne({ _id: payload.user_id, roles: { $nin: ['superadmin', 'admin'] } });
+            const user = await UserModel.findOne({ _id: payload.user_id, roles: 'superadmin' });
 
             if (!user) {
                 return done(null, false);
