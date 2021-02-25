@@ -3,6 +3,6 @@ import AdminController from '../../controllers/app/admin/admin.controller';
 
 const router = Router();
 
-router.get('/');
+router.get('/profile', AdminController.getProfile);
 
 export default router;
